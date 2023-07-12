@@ -105,17 +105,20 @@ export default function ProductForm({
         >
           {!!images?.length &&
             images.map((link) => (
-              <div className="h-24 items-center justify-center" key={link}>
-                <img src={link} alt="" className="rounded-lg" />
+              <div
+                className="h-24 border-2 border-gray-200 rounded-sm items-center justify-center"
+                key={link}
+              >
+                <img src={link} alt="" className="rounded-sm" />
               </div>
             ))}
         </ReactSortable>
         {isUploading && (
-          <div className="h-24 p-1 flex rounded-lg items-center">
-            <BounceLoader color="#1E3A8A" />
+          <div className="h-24 p-1 flex rounded-sm items-center">
+            <BounceLoader />
           </div>
         )}
-        <label className="w-24 h-24 border text-center flex items-center justify-center text-sm gap-1 text-gray-500 rounded-lg bg-gray-200 cursor-pointer">
+        <label className="w-24 h-24 border text-center flex flex-col items-center justify-center text-sm gap-1 text-gray-500 rounded-sm cursor-pointer bg-white border-2 border-emerald-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -131,9 +134,8 @@ export default function ProductForm({
             />
           </svg>
           <input type="file" className="hidden" onChange={uploadImages}></input>
-          <div>Upload</div>
+          <div>Add Images</div>
         </label>
-        {!images?.length && <div>No Photos in this product</div>}
       </div>
       <label>Product Description</label>
       <textarea

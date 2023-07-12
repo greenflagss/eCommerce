@@ -5,5 +5,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  theme:{
+    extend: {
+      'primary': 'emerald' 
+    }
+  },
   plugins: [],
 };

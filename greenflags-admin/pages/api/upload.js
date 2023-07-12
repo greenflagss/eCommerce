@@ -5,6 +5,7 @@ import { storage } from "@/lib/firebase_config";
 import fs from "fs";
 import { url } from "inspector";
 import mongooseConnect from "@/lib/mongoose";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 export default async function handle(req, res) {
   //connect mongoose
