@@ -8,7 +8,8 @@ export default async function handler(req, res) {
   await isAdminRequest(req, res);
   //Add Products to the database
   if (method === "POST") {
-    const { title, desc, price, images, category, sizes, colors } = req.body;
+    const { title, desc, price, images, category, sizes, colors, featured } =
+      req.body;
     const newProduct = Product({
       title: title,
       description: desc,
@@ -17,6 +18,7 @@ export default async function handler(req, res) {
       category: category,
       sizes: sizes,
       colors: colors,
+      featured: featured,
     });
     const productDoc = await newProduct.save();
     res.json(productDoc);
@@ -32,10 +34,20 @@ export default async function handler(req, res) {
   }
   //Update Single Product
   if (method === "PUT") {
-    const { title, description, price, images, category,sizes, colors, _id } = req.body;
+    const {
+      title,
+      description,
+      price,
+      images,
+      category,
+      sizes,
+      colors,
+      featured,
+      _id,
+    } = req.body;
     await Product.updateOne(
       { _id },
-      { title, description, price, images, category, sizes, colors }
+      { title, description, price, images, category, sizes, colors, featured }
     );
     res.json(true);
   }

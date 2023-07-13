@@ -13,6 +13,7 @@ export default function ProductForm({
   category: existingCategory,
   sizes: existingSizes,
   colors: existingColors,
+  featured: existingFeatured,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [desc, setDesc] = useState(existingDescription || "");
@@ -24,6 +25,7 @@ export default function ProductForm({
   const [colors, setColors] = useState(existingColors || []);
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [featured, setFeatured] = useState(existingFeatured || false);
   const router = useRouter();
 
   //Fetch Categories
@@ -36,7 +38,17 @@ export default function ProductForm({
   //Function CreateProduct
   async function createProduct(ev) {
     ev.preventDefault();
-    const data = { title, desc, price, images, category, sizes, colors };
+    const data = {
+      title,
+      desc,
+      price,
+      images,
+      category,
+      sizes,
+      colors,
+      featured,
+    };
+    console.log(data);
     if (_id) {
       //update
       await axios.put("/api/products", { ...data, _id });
@@ -164,7 +176,21 @@ export default function ProductForm({
         onChange={(ev) => setPrice(ev.target.value)}
         value={price}
       ></input>
-      <button type="submit" className="btn-Primary">
+      <label>Featured</label>
+      <div className="flex gap-2 items-center justify-start border-2 border-emerald-200 py-1 px-1 rounded-lg mt-1">
+        <div className="text-gray-400">Show in Featured</div>
+        <input
+          type="checkbox"
+          // value={featured}
+          className="w-5 h-5 accent-emerald-500 mb-0"
+          checked={featured ? "checked" : ''}
+          onChange={(ev) => {
+            setFeatured(!featured);
+            console.log(!featured);
+          }}
+        ></input>
+      </div>
+      <button type="submit" className="btn-Primary mt-2">
         Save
       </button>
     </form>

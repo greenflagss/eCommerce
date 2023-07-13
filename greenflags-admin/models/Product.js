@@ -8,5 +8,6 @@ const ProductSchema = new Schema({
   category: { type: mongoose.Types.ObjectId, ref: "Category" },
   colors: [{ type: String }],
   sizes: [{ type: String }],
+  featured: {type: Boolean}
 });
 export const Product = models.Product || model("Product", ProductSchema);
